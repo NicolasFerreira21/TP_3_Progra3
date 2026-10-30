@@ -13,25 +13,16 @@ public class Grafo {
 		vecindad = new HashMap<>();
 	}
 	public void agregarVertice(int vertice) {
-		if(vertice < 0) {
-			throw new IllegalArgumentException("El vertice no puede ser menor a cero");
-		}
+		verificarVerticeExiste(vertice);
 		vecindad.putIfAbsent(vertice, new HashSet<>());
 	}
 	public void agregarArista(int origen, int destino) {
-		if (!vecindad.containsKey(origen)) {
-			throw new IllegalArgumentException("El vertice"+ origen+ "no existe.");
-		}
-		else if (!vecindad.containsKey(destino)) {
-			throw new IllegalArgumentException("El vertice" + destino + "no existe.");
-		}
-		else if (origen == destino) {
-			throw new IllegalArgumentException("El origen y el destino no deben ser iguales");
-		}
-		else {
-			vecindad.get(origen).add(destino);
-			vecindad.get(destino).add(origen);
-		}
+		verificarVertice(origen);
+		verificarVertice(destino);
+		verificarVerticesDistintos(origen, destino);
+		vecindad.get(origen).add(destino);
+		vecindad.get(destino).add(origen);
+		
 	}
 	public boolean existeArista(int i, int j) {
 		if (existeVertice(i)) {
@@ -52,4 +43,27 @@ public class Grafo {
 		}
 			return vecinos;
 	}
+	
+	private void verificarVertice(int vertice) {
+		if(vertice < 0) {
+			throw new IllegalArgumentException("El vertice no puede ser menor a cero");
+		}if(!vecindad.containsKey(vertice)) {
+			throw new IllegalArgumentException("El vertice no existe");
+		}
+	}
+	
+	private void verificarVerticeExiste(int vertice) {
+		if(vertice < 0) {
+			throw new IllegalArgumentException("El vertice no puede ser menor a cero");
+		}if(vecindad.containsKey(vertice)) {
+			throw new IllegalArgumentException("El vertice ya existe");
+		}
+	}
+	
+	private void verificarVerticesDistintos(int origen, int destino) {
+		if(origen == destino) {
+			throw new IllegalArgumentException("El origen y el destino no deben ser iguales");
+		}
+	}
+	
 }

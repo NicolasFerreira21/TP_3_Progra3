@@ -1,5 +1,6 @@
 package logica;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,42 +28,45 @@ public class GrafoTest {
 	}
 	
 	@Test
-	public void testAgregarVerticeInvalido() {
-		assertThrows(IllegalArgumentException.class, () -> grafo.agregarVertice(-1));
+	public void testAgregarVerticeInvalidoNegativo() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarVertice(-1));
+		assertEquals("El vertice no puede ser menor a cero", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testAgregarVerticeInvalidoYaExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarVertice(2));
+		assertEquals("El vertice ya existe", excepcion.getMessage());
 	}
 	
 	@Test
 	public void testAgregarAristaValido() {
-		grafo.agregarVertice(4);
-		grafo.agregarVertice(5);
-		grafo.agregarArista(4, 5);
-		assertTrue(grafo.existeArista(4, 5));
-	}
-	
-	@Test
-	public void testAgregarAristaInvalidoIguales() {
-		grafo.agregarVertice(4);
-		assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(4, 4));
-	}
-	
-	@Test
-	public void testAgregarAristaInvalidoOrigenNoExiste() {
-		assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(4, 2));
-	}
-	
-	@Test
-	public void testAgregarAristaInvalidoDestinoNoExiste() {
-		assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(2, 4));
-	}
-	
-	@Test
-	public void testExisteArista() {
-		assertTrue(grafo.existeArista(2,3));
+		assertTrue(grafo.existeArista(2, 3));
 	}
 	
 	@Test
 	public void testExisteAristaOpuestaValido() {
 		assertTrue(grafo.existeArista(3,2));
 	}
+	
+	@Test
+	public void testAgregarAristaInvalidoIguales() {
+		grafo.agregarVertice(4);
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(4, 4));
+		assertEquals("El origen y el destino no deben ser iguales", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testAgregarAristaInvalidoOrigenNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(4, 2));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testAgregarAristaInvalidoDestinoNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(2, 4));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
 	
 }
