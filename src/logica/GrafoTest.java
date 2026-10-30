@@ -5,6 +5,8 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -67,6 +69,59 @@ public class GrafoTest {
 		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(2, 4));
 		assertEquals("El vertice no existe", excepcion.getMessage());
 	}
+	
+	@Test
+	public void testExisteAristaInvalidoOrigenNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.existeArista(1,2));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testExisteAristaInvalidoDestinoNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.existeArista(2,1));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testExisteAristaInvalidoIguales() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.existeArista(2,2));
+		assertEquals("El origen y el destino no deben ser iguales", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testExisteAristaInvalidoNoexisteArista() {
+		grafo.agregarVertice(4);
+		assertFalse(grafo.existeArista(2, 4));
+	}
+	
+	@Test
+	public void testExisteVerticeValido() {
+		assertTrue(grafo.existeVertice(2));
+	}
+	
+	@Test
+	public void testExisteVerticeInvalidoNoExiste() {
+		assertFalse(grafo.existeVertice(1));
+	}
+	
+	@Test
+	public void obtenerVerticesValido() {
+		Set<Integer> vertices = grafo.obtenerVertices();
+		assertEquals(2, vertices.size());
+	}
+	
+	@Test
+	public void obtenerVecinosValido() {
+		Set<Integer> vecinos = grafo.obtenerVecinos(2);
+		assertEquals(1, vecinos.size());
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

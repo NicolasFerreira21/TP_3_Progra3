@@ -12,10 +12,12 @@ public class Grafo {
 	public Grafo() {
 		vecindad = new HashMap<>();
 	}
+	
 	public void agregarVertice(int vertice) {
 		verificarVerticeExiste(vertice);
 		vecindad.putIfAbsent(vertice, new HashSet<>());
 	}
+	
 	public void agregarArista(int origen, int destino) {
 		verificarVertice(origen);
 		verificarVertice(destino);
@@ -24,24 +26,30 @@ public class Grafo {
 		vecindad.get(destino).add(origen);
 		
 	}
-	public boolean existeArista(int i, int j) {
-		if (existeVertice(i)) {
-			return (vecindad.get(i).contains(j));
+	
+	public boolean existeArista(int origen, int destino) {
+		verificarVertice(origen);
+		verificarVertice(destino);
+		verificarVerticesDistintos(origen, destino);
+		if (vecindad.get(origen).contains(destino)) {
+			return true;
 		}
 		return false;
 	}
+	
 	public boolean existeVertice(int vertice) {
 		return (vecindad.containsKey(vertice));
 	}
+	
 	public Set<Integer> obtenerVertices (){
 		return vecindad.keySet();
 	}
+	
 	public Set<Integer> obtenerVecinos(int vertice){
+		verificarVertice(vertice);
 		Set<Integer> vecinos = new HashSet<>();
-		if (existeVertice(vertice)) {
-			vecinos.addAll(vecindad.get(vertice));
-		}
-			return vecinos;
+		vecinos.addAll(vecindad.get(vertice));
+		return vecinos;
 	}
 	
 	private void verificarVertice(int vertice) {
