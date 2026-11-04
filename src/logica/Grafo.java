@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.HashMap;
+import controlador.Controlador;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.Set;
 public class Grafo {
 	
 	private Map<Integer, Set<Integer>> vecindad;
+	private Controlador controlador;
 	
 	public Grafo() {
 		vecindad = new HashMap<>();
@@ -72,6 +74,10 @@ public class Grafo {
 		if(origen == destino) {
 			throw new IllegalArgumentException("El origen y el destino no deben ser iguales");
 		}
+	}
+	
+	public void setControlador(Controlador controlador) {
+		this.controlador = controlador;
 	}
 	
 }

@@ -1,12 +1,14 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import controlador.Controlador;
 
 import javax.swing.JFrame;
 
 public class VentanaCrearArista extends JFrame{
 
 	private JFrame frame;
+	private Controlador controlador;
 
 	/**
 	 * Launch the application.
@@ -41,4 +43,8 @@ public class VentanaCrearArista extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	public void setControlador(Controlador controlador) {
+		this.controlador = controlador;
+	}
+	
 }
