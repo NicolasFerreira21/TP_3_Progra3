@@ -33,8 +33,6 @@ public class Grafo {
 	}
 	
 	public void eliminarArista(int origen, int destino) {
-		verificarVertice(origen);
-		verificarVertice(destino);
 		verificarVerticesDistintos(origen, destino);
 		verificarNoExisteArista(origen, destino);
 		vecindad.get(origen).remove(destino);

@@ -47,6 +47,24 @@ public class GrafoTest {
 	}
 	
 	@Test
+	public void testEliminarVerticeValido() {
+		grafo.eliminarVertice(2);
+		assertFalse(grafo.existeVertice(2));
+	}
+	
+	@Test
+	public void testEliminarVerticeInvalidoNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.eliminarVertice(4));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testEliminarVerticeInvalidoNegativo() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.eliminarVertice(-4));
+		assertEquals("El vertice no puede ser menor a cero", excepcion.getMessage());
+	}
+	
+	@Test
 	public void testExisteAristaOpuestaValido() {
 		assertTrue(grafo.existeArista(3,2));
 	}
@@ -68,6 +86,31 @@ public class GrafoTest {
 	public void testAgregarAristaInvalidoDestinoNoExiste() {
 		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(2, 4));
 		assertEquals("El vertice no existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testAgregarAristaInvalidoDestinoYaExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.agregarArista(2, 3));
+		assertEquals("La arista que intentas agregar ya existe", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testEliminarAristaValido() {
+		grafo.eliminarArista(2,3);
+		assertFalse(grafo.existeArista(2,3));
+	}
+	
+	@Test
+	public void testEliminarAristaInvalidoIguales() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.eliminarArista(2, 2));
+		assertEquals("El origen y el destino no deben ser iguales", excepcion.getMessage());
+	}
+	
+	@Test
+	public void testEliminarAristaInvalidoNoExiste() {
+		grafo.agregarVertice(1);
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.eliminarArista(2, 1));
+		assertEquals("La arista que intentas eliminar no existe", excepcion.getMessage());
 	}
 	
 	@Test
@@ -105,29 +148,33 @@ public class GrafoTest {
 	}
 	
 	@Test
-	public void obtenerVerticesValido() {
+	public void testObtenerVerticesValido() {
 		Set<Integer> vertices = grafo.obtenerVertices();
 		assertEquals(2, vertices.size());
 	}
 	
 	@Test
-	public void obtenerVecinosValido() {
+	public void testObtenerVecinosValido() {
 		Set<Integer> vecinos = grafo.obtenerVecinos(2);
 		assertEquals(1, vecinos.size());
 	}
 	
 	@Test
-	public void obtenerVecinosInvalidoNegativo() {
+	public void testObtenerVecinosInvalidoNegativo() {
 		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.obtenerVecinos(-2));
 		assertEquals("El vertice no puede ser menor a cero", excepcion.getMessage());
 	}	
 	
 	@Test
-	public void obtenerVecinosInvalidoNoExiste() {
+	public void testObtenerVecinosInvalidoNoExiste() {
 		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.obtenerVecinos(4));
 		assertEquals("El vertice no existe", excepcion.getMessage());
 	}	
 	
-	
+	@Test
+	public void testReiniciarGrafo() {
+		grafo.reiniciarGrafo();
+		assertEquals(0, grafo.obtenerVertices().size());
+	}	
 	
 }
