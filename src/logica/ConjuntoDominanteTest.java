@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class AlgoritmoTest {
+public class ConjuntoDominanteTest {
 	
 	private Grafo grafo;
 	
@@ -33,10 +33,10 @@ public class AlgoritmoTest {
 	
 	@Test
 	public void dominanteTest() {
-		Algoritmo resolver= new Algoritmo();		
+		ConjuntoDominante conjuntoDominante= new ConjuntoDominante();		
 		Set<Integer>conjuntoD= new HashSet<>();		
-		resolver.conjuntoDominante(grafo);
-		conjuntoD = resolver.getConjuntoDominante();
+		conjuntoDominante.obtenerConjuntoDominante(grafo);
+		conjuntoD = conjuntoDominante.getConjuntoDominante();
 		assertEquals(conjuntoD.size(), 2);
 		assertTrue(conjuntoD.contains(2)||conjuntoD.contains(4));
 		

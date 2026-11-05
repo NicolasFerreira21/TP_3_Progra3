@@ -1,6 +1,6 @@
 package controlador;
 
-import logica.Algoritmo;
+import logica.ConjuntoDominante;
 import logica.Grafo;
 import presentacion.VentanaPrincipal;
 import presentacion.VentanaCrearArista;
@@ -10,7 +10,7 @@ public class IniciarClases {
 	
 	public IniciarClases() {
 		Controlador controlador = new Controlador();
-		Algoritmo algoritmo = new Algoritmo();
+		ConjuntoDominante ConjuntoDominante = new ConjuntoDominante();
 		Grafo grafo = new Grafo();
 		VentanaPrincipal ventanaPrincipal =  new VentanaPrincipal();
 		VentanaCrearArista ventanaCrearArista = new VentanaCrearArista();
@@ -23,9 +23,7 @@ public class IniciarClases {
 		controlador.setVentanaPrincipal(ventanaPrincipal);
 		controlador.setVentanaCrearArista(ventanaCrearArista);
 		controlador.setVentanaCrearVertice(ventanaCrearVertice);
-		controlador.setAlgoritmo(algoritmo);
-		controlador.setGrafo(grafo);
-		
+
 		controlador.iniciarVentanaPrincipal();
 	}
 	

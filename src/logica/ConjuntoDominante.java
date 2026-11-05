@@ -3,11 +3,11 @@ package logica;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Algoritmo {
+public class ConjuntoDominante {
 	
 	private Set<Integer> conDominante;
 	
-	public void conjuntoDominante(Grafo grafo){
+	public void obtenerConjuntoDominante(Grafo grafo){
 		Set<Integer>todos_los_vertices = grafo.obtenerVertices();
 		Set<Integer>dominados = new HashSet<>();
 		conDominante = new HashSet<>();

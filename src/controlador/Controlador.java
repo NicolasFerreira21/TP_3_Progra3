@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Parsed;
 
-import logica.Algoritmo;
+import logica.ConjuntoDominante;
 import logica.Grafo;
 import presentacion.VentanaPrincipal;
 import presentacion.VentanaCrearArista;
@@ -15,15 +15,15 @@ import presentacion.VentanaCrearVertice;
 
 public class Controlador {
 
-	private Algoritmo algoritmo;
+	private ConjuntoDominante conjuntoDominante;
 	private Grafo grafo;
 	private VentanaPrincipal ventanaPrincipal;
 	private VentanaCrearArista ventanaCrearArista;
 	private VentanaCrearVertice ventanaCrearVertice;
 
 	
-	public void setAlgoritmo(Algoritmo algoritmo) {
-		this.algoritmo = algoritmo;
+	public void setAlgoritmo(ConjuntoDominante conjuntoDominante) {
+		this.conjuntoDominante = conjuntoDominante;
 	}
 	
 	public void setGrafo(Grafo grafo) {
@@ -119,8 +119,8 @@ public class Controlador {
 	}
 	
 	public void generarConjuntoDominanateMinimo() {
-		algoritmo.conjuntoDominante(grafo);
-		ventanaPrincipal.MostrarConjunto(algoritmo.getConjuntoDominante());
+		conjuntoDominante.obtenerConjuntoDominante(grafo);
+		ventanaPrincipal.MostrarConjunto(conjuntoDominante.getConjuntoDominante());
 	}
 
 	
