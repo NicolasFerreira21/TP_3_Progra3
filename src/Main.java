@@ -1,10 +1,9 @@
-import controlador.Controlador;
+import controlador.IniciarClases;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Controlador controlador=new Controlador();
+		IniciarClases iniciarClases = new IniciarClases();
 	}
 
 }

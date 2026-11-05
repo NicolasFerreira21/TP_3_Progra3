@@ -1,20 +1,23 @@
-package modelo;
+package logica;
 
 import java.util.HashSet;
 import java.util.Set;
+import logica.Grafo;
 
 public class Algoritmo {
 	
-	public Set<Integer> conjuntoDominante(Grafo grafo){
+	private Set<Integer> conDominante;
+	
+	public void conjuntoDominante(Grafo grafo){
 		Set<Integer>todos_los_vertices = grafo.obtenerVertices();
-		Set<Integer>dominados=new HashSet<>();
-		Set<Integer>dominante=new HashSet<>();
+		Set<Integer>dominados = new HashSet<>();
+		conDominante = new HashSet<>();
 	
 		while (dominados.size()<todos_los_vertices.size()) {
 			Integer mejorDominante=null;
 			int coberturaMax=-1;
 			for (int vertice : todos_los_vertices) {
-				if (dominante.contains(vertice)) {
+				if (conDominante.contains(vertice)) {
 					continue;
 				}
 				Set<Integer>cobertura=new HashSet<>();
@@ -33,12 +36,15 @@ public class Algoritmo {
 			}
 			if (mejorDominante==null)
 				break;
-			dominante.add(mejorDominante);
+			conDominante.add(mejorDominante);
 			dominados.add(mejorDominante);
 			dominados.addAll(grafo.obtenerVecinos(mejorDominante));
-
 		}
-		return dominante;
+
+	}
+	
+	public Set<Integer> getConjuntoDominante(){
+		return new HashSet<>(conDominante);
 	}
 	
 }

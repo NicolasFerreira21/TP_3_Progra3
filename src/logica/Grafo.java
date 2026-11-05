@@ -1,6 +1,7 @@
-package modelo;
+package logica;
 
 import java.util.HashMap;
+import controlador.Controlador;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -23,8 +24,8 @@ public class Grafo {
 		verificarVertice(destino);
 		verificarVerticesDistintos(origen, destino);
 		verificarExisteArista(origen, destino);
-			vecindad.get(origen).add(destino);
-			vecindad.get(destino).add(origen);
+		vecindad.get(origen).add(destino);
+		vecindad.get(destino).add(origen);
 	}
 	
 	public boolean existeArista(int origen, int destino) {
@@ -39,7 +40,7 @@ public class Grafo {
 	}
 	
 	public Set<Integer> obtenerVertices (){
-		return vecindad.keySet();
+		return new HashSet<>(vecindad.keySet());
 	}
 	
 	public Set<Integer> obtenerVecinos(int vertice){

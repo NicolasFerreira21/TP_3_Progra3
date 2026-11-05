@@ -1,68 +1,93 @@
 package controlador;
 
-import modelo.Algoritmo;
-import modelo.Grafo;
-import vista.CargaArista;
-import vista.CargaVertice;
-import vista.Menu;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Parsed;
+
+import logica.Algoritmo;
+import logica.Grafo;
+import presentacion.VentanaPrincipal;
+import presentacion.VentanaCrearArista;
+import presentacion.VentanaCrearVertice;
 
 public class Controlador {
-	private Menu menu;
-	private CargaVertice cargaVertice;
-	private CargaArista cargaArista;
-	private Grafo grafoP;
-	private Algoritmo algoritmoGoloso;
+
+	private Algoritmo algoritmo;
+	private Grafo grafo;
+	private VentanaPrincipal ventanaPrincipal;
+	private VentanaCrearArista ventanaCrearArista;
+	private VentanaCrearVertice ventanaCrearVertice;
 	
-	public Controlador() {
-		grafoP = new Grafo();
-		this.menu = new Menu(this);
-		this.menu.setVisible(true);
+	public void setAlgoritmo(Algoritmo algoritmo) {
+		this.algoritmo = algoritmo;
 	}
-	public void abrirVentanaVertices() {
-		this.menu.dispose();
-		cargaVertice = new CargaVertice(this);
-		cargaVertice.setVisible(true);
+	
+	public void setGrafo(Grafo grafo) {
+		this.grafo = grafo;
 	}
-	public void agregarVertice(int vertice){
+	
+	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
+	}
+	
+	public void setVentanaCrearArista(VentanaCrearArista ventanaCrearArista) {
+		this.ventanaCrearArista = ventanaCrearArista;
+	}
+	
+	public void setVentanaCrearVertice(VentanaCrearVertice ventanaCrearVertice) {
+		this.ventanaCrearVertice = ventanaCrearVertice;
+	}
+
+	public void iniciarVentanaPrincipal() {
+		ventanaPrincipal.setVisible(true);
+	}
+	
+	public void iniciarVentanaCrearVertice() {
+		ventanaCrearVertice.setVisible(true);
+	}
+	
+	public void iniciarVentanaCrearArista() {
+		if(grafo.obtenerVertices().size() == 0){
+			ventanaPrincipal.MensajeError("No existen vertices para crear aristas");
+		}
+		ventanaCrearArista.actualizarVertices();
+		ventanaCrearArista.setVisible(true);
+	}
+	
+	public List<Integer> obtenerListaDeVertices() {
+		Set<Integer> vertices = grafo.obtenerVertices();
+		List<Integer> listaVertices = new ArrayList<>(vertices);
+		return listaVertices;
+	}
+
+	public void crearVertice(Integer vertice) {
+		if(grafo.existeVertice(vertice)) {
+			ventanaCrearVertice.MensajeError("El vertice ya existe");
+			return;
+		}try {
+			grafo.agregarVertice(vertice);
+			ventanaCrearVertice.MensajeAgregado("Vertice agregado con exito");
+		} catch (IllegalArgumentException e) {
+			ventanaCrearVertice.MensajeError(e.getMessage());
+		}
+	}
+	
+	public void crearArista(Integer origen, Integer destino) {
 		try {
-			grafoP.agregarVertice(vertice);
-			cargaVertice.reiniciarSpinner();
-			cargaVertice.MensajeAgregado("El vertice fue agregado con exito");
-		}
-		catch(IllegalArgumentException e){
-			cargaVertice.MensajeError(e.getMessage());
-		}
-		catch (Exception ex) {
-			cargaVertice.MensajeError("El valor ingresado es inválido");
+			grafo.agregarArista(origen, destino);
+			ventanaCrearArista.MensajeAgregado("Arista creada con exito");
+		}catch (IllegalArgumentException e) {
+			ventanaCrearArista.MensajeError(e.getMessage());
 		}
 	}
-	public void abrirVentanaAristas() {
-		if (grafoP.obtenerVertices().isEmpty()) {
-			cargaVertice.MensajeError("No hay vertices cargados aun.");
-		}
-		else if(grafoP.obtenerVertices().size()==1){
-			cargaVertice.MensajeError("Hay un solo vertice cargado, no puedes cargar aristas aun.");
-		}
-		else {
-			cargaVertice.dispose();
-			cargaArista = new CargaArista(this, grafoP.obtenerVertices());
-			cargaArista.setVisible(true);
-		}
+	
+	public void generarConjuntoDominanateMinimo() {
+		algoritmo.conjuntoDominante(grafo);
+		ventanaPrincipal.MostrarConjunto(algoritmo.getConjuntoDominante());
 	}
-	public void agregarArista(int origen, int destino){
-		try {
-			grafoP.agregarArista(origen, destino);
-			cargaArista.MensajeAgregado("La arista: ("+origen+", "+destino+") y ("+destino+", "+origen+") fue agregada con éxito");
-		}
-		catch (IllegalArgumentException e) {
-			cargaArista.MensajeError(e.getMessage());
-		}
-		catch(Exception ex){
-			cargaArista.MensajeError("El valor ingresado es inválido");
-		}
-	}
-	public void generarConjuntoDominante() {
-		algoritmoGoloso = new Algoritmo();
-		cargaArista.MostrarConjunto(algoritmoGoloso.conjuntoDominante(grafoP));
-	}
+
+	
+	
 }
