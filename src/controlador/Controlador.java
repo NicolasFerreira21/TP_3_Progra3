@@ -12,6 +12,7 @@ import presentacion.VentanaPrincipal;
 import presentacion.VentanaCrearArista;
 import presentacion.VentanaCrearVertice;
 
+
 public class Controlador {
 
 	private Algoritmo algoritmo;
@@ -19,6 +20,7 @@ public class Controlador {
 	private VentanaPrincipal ventanaPrincipal;
 	private VentanaCrearArista ventanaCrearArista;
 	private VentanaCrearVertice ventanaCrearVertice;
+
 	
 	public void setAlgoritmo(Algoritmo algoritmo) {
 		this.algoritmo = algoritmo;
@@ -68,6 +70,7 @@ public class Controlador {
 			return;
 		}try {
 			grafo.agregarVertice(vertice);
+			ventanaPrincipal.actualizarGrafo(grafo);
 			ventanaCrearVertice.MensajeAgregado("Vertice agregado con exito");
 		} catch (IllegalArgumentException e) {
 			ventanaCrearVertice.MensajeError(e.getMessage());
@@ -77,6 +80,7 @@ public class Controlador {
 	public void crearArista(Integer origen, Integer destino) {
 		try {
 			grafo.agregarArista(origen, destino);
+			ventanaPrincipal.actualizarGrafo(grafo);
 			ventanaCrearArista.MensajeAgregado("Arista creada con exito");
 		}catch (IllegalArgumentException e) {
 			ventanaCrearArista.MensajeError(e.getMessage());

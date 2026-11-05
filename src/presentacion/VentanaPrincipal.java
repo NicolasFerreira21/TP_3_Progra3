@@ -3,6 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 import controlador.Controlador;
 import controlador.IniciarClases;
+import logica.Grafo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,13 @@ public class VentanaPrincipal extends JFrame{
 
 	private JFrame frame;
 	private Controlador controlador;
+	private VentanaGrafo ventanaGrafo;
 
+	public void actualizarGrafo(Grafo grafo) {
+		ventanaGrafo.setGrafo(grafo);
+	}
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -29,6 +36,9 @@ public class VentanaPrincipal extends JFrame{
 	 */
 	public VentanaPrincipal() {
 		initialize();
+		ventanaGrafo = new VentanaGrafo();
+		ventanaGrafo.setBounds(10, 10, 280 , 350);
+		getContentPane().add(ventanaGrafo);
 	}
 
 	/**
@@ -36,12 +46,12 @@ public class VentanaPrincipal extends JFrame{
 	 */
 	private void initialize() {
 		
-		setBounds(100, 100, 555, 137);
+		setBounds(100, 100, 565, 473);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JButton BotonCrearVertices = new JButton("Crear vertice");
-		BotonCrearVertices.setBounds(22, 33, 128, 30);
+		BotonCrearVertices.setBounds(323, 84, 128, 30);
 		getContentPane().add(BotonCrearVertices);
 		BotonCrearVertices.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -50,7 +60,7 @@ public class VentanaPrincipal extends JFrame{
 		});
 		
 		JButton BotonCrearArista = new JButton("Crear Arista");
-		BotonCrearArista.setBounds(171, 33, 128, 30);
+		BotonCrearArista.setBounds(323, 136, 128, 30);
 		getContentPane().add(BotonCrearArista);
 		getContentPane().add(BotonCrearVertices);
 		BotonCrearArista.addActionListener(new ActionListener() {
