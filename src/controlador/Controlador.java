@@ -9,6 +9,7 @@ import presentacion.VentanaCrearArista;
 import presentacion.VentanaCrearVertice;
 import presentacion.VentanaErrorAlCrearVertice;
 import presentacion.VentanaErrorVerticeYaExiste;
+import presentacion.VentanaErrorVerticeNegativo;
 
 public class Controlador {
 
@@ -18,8 +19,9 @@ public class Controlador {
 	private VentanaCrearArista ventanaCrearArista;
 	private VentanaCrearVertice ventanaCrearVertice;
 	private VentanaErrorAlCrearVertice ventanaErrorAlCrearVertice;
-	private Auxiliar auxiliar;
+	private Auxiliar auxiliar = new Auxiliar();
 	private VentanaErrorVerticeYaExiste ventanaErrorVerticeYaExiste;
+	private VentanaErrorVerticeNegativo ventanaErrorVerticeNegativo;
 	
 	public void setAlgoritmo(Algoritmo algoritmo) {
 		this.algoritmo = algoritmo;
@@ -48,6 +50,10 @@ public class Controlador {
 	public void setVentanaErrorVerticeYaExiste(VentanaErrorVerticeYaExiste ventanaErrorVerticeYaExiste) {
 		this.ventanaErrorVerticeYaExiste = ventanaErrorVerticeYaExiste;
 	}
+	
+	public void setVentanaErrorVerticeNegativo(VentanaErrorVerticeNegativo ventanaErrorVerticeNegativo) {
+		this.ventanaErrorVerticeNegativo = ventanaErrorVerticeNegativo;
+	}
 
 	public void iniciarVentanaPrincipal() {
 		ventanaPrincipal.setVisible(true);
@@ -68,6 +74,11 @@ public class Controlador {
 	private void iniciarVentanaErrorVerticeYaExiste() {
 		ventanaErrorVerticeYaExiste.setVisible(true);
 	}
+	
+	private void iniciarVentanaErrorVerticeNegativo() {
+		ventanaErrorVerticeNegativo.setVisible(true);
+	}
+	
 
 	public void crearVertice(String vertice) {
 		if(!auxiliar.esNumero(vertice)) {
@@ -78,8 +89,12 @@ public class Controlador {
 		if(grafo.existeVertice(verticeNum)) {
 			iniciarVentanaErrorVerticeYaExiste();
 			return;
+		}try {
+			grafo.agregarVertice(verticeNum);			
+		} catch (IllegalArgumentException e) {
+			iniciarVentanaErrorVerticeNegativo();
 		}
-		grafo.agregarVertice(verticeNum);
+		
 		
 	}
 

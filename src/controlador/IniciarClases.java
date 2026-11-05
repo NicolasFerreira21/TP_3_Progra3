@@ -7,6 +7,7 @@ import presentacion.VentanaCrearArista;
 import presentacion.VentanaCrearVertice;
 import presentacion.VentanaErrorAlCrearVertice;
 import presentacion.VentanaErrorVerticeYaExiste;
+import presentacion.VentanaErrorVerticeNegativo;
 
 public class IniciarClases {
 	
@@ -18,6 +19,7 @@ public class IniciarClases {
 		VentanaCrearVertice ventanaCrearVertice =  new VentanaCrearVertice();
 		VentanaErrorAlCrearVertice ventanaErrorAlCrearVertice = new VentanaErrorAlCrearVertice();
 		VentanaErrorVerticeYaExiste ventanaErrorVerticeYaExiste = new VentanaErrorVerticeYaExiste();
+		VentanaErrorVerticeNegativo ventanaErrorVerticeNegativo = new VentanaErrorVerticeNegativo();
 		Controlador controlador = new Controlador();
 		
 		ventanaPrincipal.setControlador(controlador);
@@ -25,12 +27,16 @@ public class IniciarClases {
 		ventanaCrearVertice.setControlador(controlador);
 		ventanaErrorAlCrearVertice.setControlador(controlador);
 		ventanaErrorVerticeYaExiste.setControlador(controlador);
+		ventanaErrorVerticeNegativo.setControlador(controlador);
 		algoritmo.setControlador(controlador);
 		grafo.setControlador(controlador);
 		
 		controlador.setVentanaPrincipal(ventanaPrincipal);
 		controlador.setVentanaCrearArista(ventanaCrearArista);
 		controlador.setVentanaCrearVertice(ventanaCrearVertice);
+		controlador.setVentanaErrorAlCrearVertice(ventanaErrorAlCrearVertice);
+		controlador.setVentanaErrorVerticeYaExiste(ventanaErrorVerticeYaExiste);
+		controlador.setVentanaErrorVerticeNegativo(ventanaErrorVerticeNegativo);
 		controlador.setAlgoritmo(algoritmo);
 		controlador.setGrafo(grafo);
 		
