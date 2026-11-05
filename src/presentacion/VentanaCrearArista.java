@@ -49,7 +49,7 @@ public class VentanaCrearArista extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 250, 250);
+		setBounds(100, 100, 250, 270);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -70,11 +70,20 @@ public class VentanaCrearArista extends JFrame{
 		getContentPane().add(spinnerDestino);
 		
 		JButton btnCrearArista = new JButton("Crear arista");
-		btnCrearArista.setBounds(10, 162, 125, 23);
+		btnCrearArista.setBounds(10, 132, 125, 23);
 		getContentPane().add(btnCrearArista);
 		btnCrearArista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.crearArista((Integer)spinnerOrigen.getValue(), (Integer) spinnerDestino.getValue());				
+			}
+		});
+		
+		JButton btnEliminarArista = new JButton("Eliminar arista");
+		btnEliminarArista.setBounds(10, 166, 125, 23);
+		getContentPane().add(btnEliminarArista);
+		btnEliminarArista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.eliminarArista((Integer)spinnerOrigen.getValue(), (Integer) spinnerDestino.getValue());				
 			}
 		});
 

@@ -1,7 +1,6 @@
 package logica;
 
 import java.util.HashMap;
-import controlador.Controlador;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +18,11 @@ public class Grafo {
 		vecindad.putIfAbsent(vertice, new HashSet<>());
 	}
 	
+	public void eliminarVertice(int vertice) {
+		verificarVertice(vertice);
+		vecindad.remove(vertice);
+	}
+	
 	public void agregarArista(int origen, int destino) {
 		verificarVertice(origen);
 		verificarVertice(destino);
@@ -26,6 +30,15 @@ public class Grafo {
 		verificarExisteArista(origen, destino);
 		vecindad.get(origen).add(destino);
 		vecindad.get(destino).add(origen);
+	}
+	
+	public void eliminarArista(int origen, int destino) {
+		verificarVertice(origen);
+		verificarVertice(destino);
+		verificarVerticesDistintos(origen, destino);
+		verificarNoExisteArista(origen, destino);
+		vecindad.get(origen).remove(destino);
+		vecindad.get(destino).remove(origen);
 	}
 	
 	public boolean existeArista(int origen, int destino) {
@@ -49,29 +62,40 @@ public class Grafo {
 		vecinos.addAll(vecindad.get(vertice));
 		return vecinos;
 	}
+	
+	public void reiniciarGrafo() {
+		vecindad.clear();
+	}
+	
 	private void verificarExisteVertice(int vertice) {
 		if(vertice < 0) {
-			throw new IllegalArgumentException("El vertice no puede ser menor a cero.");
+			throw new IllegalArgumentException("El vertice no puede ser menor a cero");
 		}if(vecindad.containsKey(vertice)) {
-			throw new IllegalArgumentException("El vertice ya existe.");
+			throw new IllegalArgumentException("El vertice ya existe");
 		}
 	}
 	private void verificarVertice(int vertice) {
 		if(vertice < 0) {
-			throw new IllegalArgumentException("El vertice no puede ser menor a cero.");
+			throw new IllegalArgumentException("El vertice no puede ser menor a cero");
 		}if(!vecindad.containsKey(vertice)) {
-			throw new IllegalArgumentException("El vertice no existe.");
+			throw new IllegalArgumentException("El vertice no existe");
 		}
 	}
 	
 	private void verificarVerticesDistintos(int origen, int destino) {
 		if(origen == destino) {
-			throw new IllegalArgumentException("El origen y el destino no deben ser iguales.");
+			throw new IllegalArgumentException("El origen y el destino no deben ser iguales");
 		}
 	}
 	private void verificarExisteArista(int origen, int destino) {
 		if(vecindad.get(origen).contains(destino)) {
-			throw new IllegalArgumentException("La arista que intentas agregar ya existe.");
+			throw new IllegalArgumentException("La arista que intentas agregar ya existe");
+		}
+	}
+	
+	private void verificarNoExisteArista(int origen, int destino) {
+		if(!vecindad.get(origen).contains(destino)) {
+			throw new IllegalArgumentException("La arista que intentas eliminar no existe");
 		}
 	}
 	

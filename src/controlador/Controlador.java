@@ -77,6 +77,22 @@ public class Controlador {
 		}
 	}
 	
+	public void eliminarVertice(Integer vertice) {
+		try {
+			Set<Integer> vecinos = grafo.obtenerVecinos(vertice);
+			if(vecinos.size() > 0) {
+				for(Integer vecino : vecinos) {
+					eliminarArista(vertice, vecino);				
+				}
+			}
+			grafo.eliminarVertice(vertice);
+			ventanaPrincipal.actualizarGrafo(grafo);
+			ventanaCrearVertice.MensajeAgregado("Vertice eliminado");
+		} catch (IllegalArgumentException e) {
+			ventanaCrearVertice.MensajeError(e.getMessage());
+		}
+	}
+	
 	public void crearArista(Integer origen, Integer destino) {
 		try {
 			grafo.agregarArista(origen, destino);
@@ -85,6 +101,21 @@ public class Controlador {
 		}catch (IllegalArgumentException e) {
 			ventanaCrearArista.MensajeError(e.getMessage());
 		}
+	}
+	
+	public void eliminarArista(Integer origen, Integer destino) {
+		try {
+			grafo.eliminarArista(origen, destino);
+			ventanaPrincipal.actualizarGrafo(grafo);
+			ventanaCrearArista.MensajeAgregado("Arista eliminada");
+		}catch (IllegalArgumentException e) {
+			ventanaCrearArista.MensajeError(e.getMessage());
+		}
+	}
+	
+	public void reiniciarGrafo() {
+		grafo.reiniciarGrafo();
+		ventanaPrincipal.actualizarGrafo(grafo);
 	}
 	
 	public void generarConjuntoDominanateMinimo() {

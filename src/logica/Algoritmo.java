@@ -2,7 +2,6 @@ package logica;
 
 import java.util.HashSet;
 import java.util.Set;
-import logica.Grafo;
 
 public class Algoritmo {
 	

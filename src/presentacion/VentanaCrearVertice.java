@@ -41,7 +41,7 @@ public class VentanaCrearVertice extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLabel ingresarVertice = new JLabel("Ingrese el número del vértice a crear:");
+		JLabel ingresarVertice = new JLabel("Ingrese el número del vértice:");
 		ingresarVertice.setBounds(10, 46, 228, 26);
 		getContentPane().add(ingresarVertice);
 		
@@ -49,8 +49,17 @@ public class VentanaCrearVertice extends JFrame{
 		spinner.setBounds(248, 49, 50, 20);
 		getContentPane().add(spinner);
 		
+		JButton botonEliminarVertice = new JButton("Eliminar Vertice");
+		botonEliminarVertice.setBounds(20, 128, 135, 23);
+		getContentPane().add(botonEliminarVertice);
+		botonEliminarVertice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.eliminarVertice((Integer) spinner.getValue());				
+			}
+		});
+		
 		JButton botonCrearVertice = new JButton("Crear Vertice");
-		botonCrearVertice.setBounds(100, 100, 118, 23);
+		botonCrearVertice.setBounds(20, 83, 135, 23);
 		getContentPane().add(botonCrearVertice);
 		botonCrearVertice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -39,6 +39,15 @@ public class VentanaPrincipal extends JFrame{
 		ventanaGrafo = new VentanaGrafo();
 		ventanaGrafo.setBounds(10, 10, 280 , 350);
 		getContentPane().add(ventanaGrafo);
+		
+		JButton BotonReiniciarGrafo = new JButton("Reiniciar Grafo");
+		BotonReiniciarGrafo.setBounds(323, 292, 128, 30);
+		getContentPane().add(BotonReiniciarGrafo);
+		BotonReiniciarGrafo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.reiniciarGrafo();				
+			}
+		});
 	}
 
 	/**
@@ -50,7 +59,7 @@ public class VentanaPrincipal extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JButton BotonCrearVertices = new JButton("Crear vertice");
+		JButton BotonCrearVertices = new JButton("Vertices");
 		BotonCrearVertices.setBounds(323, 84, 128, 30);
 		getContentPane().add(BotonCrearVertices);
 		BotonCrearVertices.addActionListener(new ActionListener() {
@@ -59,7 +68,7 @@ public class VentanaPrincipal extends JFrame{
 			}
 		});
 		
-		JButton BotonCrearArista = new JButton("Crear Arista");
+		JButton BotonCrearArista = new JButton("Aristas");
 		BotonCrearArista.setBounds(323, 136, 128, 30);
 		getContentPane().add(BotonCrearArista);
 		getContentPane().add(BotonCrearVertices);
