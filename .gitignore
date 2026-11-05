@@ -1,0 +1,5 @@
+#Ignorar la carpeta de compilados de Eclipse
+bin/
+
+#Ignorar archivos generados por el sistema/IDE si lo deseas
+*.class

@@ -116,12 +116,17 @@ public class GrafoTest {
 		assertEquals(1, vecinos.size());
 	}
 	
+	@Test
+	public void obtenerVecinosInvalidoNegativo() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.obtenerVecinos(-2));
+		assertEquals("El vertice no puede ser menor a cero", excepcion.getMessage());
+	}	
 	
-	
-	
-	
-	
-	
+	@Test
+	public void obtenerVecinosInvalidoNoExiste() {
+		IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () -> grafo.obtenerVecinos(4));
+		assertEquals("El vertice no existe", excepcion.getMessage());
+	}	
 	
 	
 }

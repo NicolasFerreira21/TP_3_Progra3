@@ -3,7 +3,11 @@ package modelo;
 import java.util.HashSet;
 import java.util.Set;
 
+import controlador.Controlador;
+
 public class Algoritmo {
+	
+	private Controlador controlador;
 	
 	public Set<Integer> conjuntoDominante(Grafo grafo){
 		Set<Integer>todos_los_vertices = grafo.obtenerVertices();
@@ -39,6 +43,10 @@ public class Algoritmo {
 
 		}
 		return dominante;
+	}
+	
+	public void setControlador(Controlador controlador) {
+		this.controlador = controlador;
 	}
 	
 }
