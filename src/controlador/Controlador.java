@@ -22,7 +22,7 @@ public class Controlador {
 	private VentanaCrearVertice ventanaCrearVertice;
 
 	
-	public void setAlgoritmo(ConjuntoDominante conjuntoDominante) {
+	public void setConjuntoDominante(ConjuntoDominante conjuntoDominante) {
 		this.conjuntoDominante = conjuntoDominante;
 	}
 	

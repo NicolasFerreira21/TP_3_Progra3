@@ -23,7 +23,9 @@ public class IniciarClases {
 		controlador.setVentanaPrincipal(ventanaPrincipal);
 		controlador.setVentanaCrearArista(ventanaCrearArista);
 		controlador.setVentanaCrearVertice(ventanaCrearVertice);
-
+		controlador.setConjuntoDominante(ConjuntoDominante);
+		controlador.setGrafo(grafo);
+		
 		controlador.iniciarVentanaPrincipal();
 	}
 	
