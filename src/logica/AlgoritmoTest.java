@@ -35,7 +35,8 @@ public class AlgoritmoTest {
 	public void dominanteTest() {
 		Algoritmo resolver= new Algoritmo();		
 		Set<Integer>conjuntoD= new HashSet<>();		
-		conjuntoD= resolver.conjuntoDominante(grafo);
+		resolver.conjuntoDominante(grafo);
+		conjuntoD = resolver.getConjuntoDominante();
 		assertEquals(conjuntoD.size(), 2);
 		assertTrue(conjuntoD.contains(2)||conjuntoD.contains(4));
 		
