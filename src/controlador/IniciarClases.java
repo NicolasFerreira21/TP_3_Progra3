@@ -3,8 +3,8 @@ package controlador;
 import logica.ConjuntoDominante;
 import logica.Grafo;
 import presentacion.VentanaPrincipal;
-import presentacion.VentanaCrearArista;
-import presentacion.VentanaCrearVertice;
+import presentacion.VentanaArista;
+import presentacion.VentanaVertice;
 
 public class IniciarClases {
 	
@@ -13,16 +13,16 @@ public class IniciarClases {
 		ConjuntoDominante ConjuntoDominante = new ConjuntoDominante();
 		Grafo grafo = new Grafo();
 		VentanaPrincipal ventanaPrincipal =  new VentanaPrincipal();
-		VentanaCrearArista ventanaCrearArista = new VentanaCrearArista();
-		VentanaCrearVertice ventanaCrearVertice =  new VentanaCrearVertice();
+		VentanaArista ventanaArista = new VentanaArista();
+		VentanaVertice ventanaVertice =  new VentanaVertice();
 		
 		ventanaPrincipal.setControlador(controlador);
-		ventanaCrearArista.setControlador(controlador);
-		ventanaCrearVertice.setControlador(controlador);
+		ventanaArista.setControlador(controlador);
+		ventanaVertice.setControlador(controlador);
 		
 		controlador.setVentanaPrincipal(ventanaPrincipal);
-		controlador.setVentanaCrearArista(ventanaCrearArista);
-		controlador.setVentanaCrearVertice(ventanaCrearVertice);
+		controlador.setVentanaArista(ventanaArista);
+		controlador.setVentanaVertice(ventanaVertice);
 		controlador.setConjuntoDominante(ConjuntoDominante);
 		controlador.setGrafo(grafo);
 		

@@ -15,7 +15,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 import javax.swing.JButton;
 
-public class VentanaCrearArista extends JFrame{
+public class VentanaArista extends JFrame{
 
 	private JFrame frame;
 	private Controlador controlador;
@@ -39,7 +39,7 @@ public class VentanaCrearArista extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public VentanaCrearArista() {
+	public VentanaArista() {
 		initialize();
 
 		

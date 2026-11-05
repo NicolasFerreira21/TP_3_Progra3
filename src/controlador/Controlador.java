@@ -9,8 +9,8 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Parsed;
 import logica.ConjuntoDominante;
 import logica.Grafo;
 import presentacion.VentanaPrincipal;
-import presentacion.VentanaCrearArista;
-import presentacion.VentanaCrearVertice;
+import presentacion.VentanaArista;
+import presentacion.VentanaVertice;
 
 
 public class Controlador {
@@ -18,8 +18,8 @@ public class Controlador {
 	private ConjuntoDominante conjuntoDominante;
 	private Grafo grafo;
 	private VentanaPrincipal ventanaPrincipal;
-	private VentanaCrearArista ventanaCrearArista;
-	private VentanaCrearVertice ventanaCrearVertice;
+	private VentanaArista ventanaArista;
+	private VentanaVertice ventanaVertice;
 
 	
 	public void setConjuntoDominante(ConjuntoDominante conjuntoDominante) {
@@ -34,12 +34,12 @@ public class Controlador {
 		this.ventanaPrincipal = ventanaPrincipal;
 	}
 	
-	public void setVentanaCrearArista(VentanaCrearArista ventanaCrearArista) {
-		this.ventanaCrearArista = ventanaCrearArista;
+	public void setVentanaArista(VentanaArista ventanaArista) {
+		this.ventanaArista = ventanaArista;
 	}
 	
-	public void setVentanaCrearVertice(VentanaCrearVertice ventanaCrearVertice) {
-		this.ventanaCrearVertice = ventanaCrearVertice;
+	public void setVentanaVertice(VentanaVertice ventanaVertice) {
+		this.ventanaVertice = ventanaVertice;
 	}
 
 	public void iniciarVentanaPrincipal() {
@@ -47,15 +47,15 @@ public class Controlador {
 	}
 	
 	public void iniciarVentanaCrearVertice() {
-		ventanaCrearVertice.setVisible(true);
+		ventanaVertice.setVisible(true);
 	}
 	
 	public void iniciarVentanaCrearArista() {
 		if(grafo.obtenerVertices().size() == 0){
 			ventanaPrincipal.MensajeError("No existen vertices para crear aristas");
 		}
-		ventanaCrearArista.actualizarVertices();
-		ventanaCrearArista.setVisible(true);
+		ventanaArista.actualizarVertices();
+		ventanaArista.setVisible(true);
 	}
 	
 	public List<Integer> obtenerListaDeVertices() {
@@ -66,14 +66,14 @@ public class Controlador {
 
 	public void crearVertice(Integer vertice) {
 		if(grafo.existeVertice(vertice)) {
-			ventanaCrearVertice.MensajeError("El vertice ya existe");
+			ventanaVertice.MensajeError("El vertice ya existe");
 			return;
 		}try {
 			grafo.agregarVertice(vertice);
 			ventanaPrincipal.actualizarGrafo(grafo);
-			ventanaCrearVertice.MensajeAgregado("Vertice agregado con exito");
+			ventanaVertice.MensajeAgregado("Vertice agregado con exito");
 		} catch (IllegalArgumentException e) {
-			ventanaCrearVertice.MensajeError(e.getMessage());
+			ventanaVertice.MensajeError(e.getMessage());
 		}
 	}
 	
@@ -87,9 +87,9 @@ public class Controlador {
 			}
 			grafo.eliminarVertice(vertice);
 			ventanaPrincipal.actualizarGrafo(grafo);
-			ventanaCrearVertice.MensajeAgregado("Vertice eliminado");
+			ventanaVertice.MensajeAgregado("Vertice eliminado");
 		} catch (IllegalArgumentException e) {
-			ventanaCrearVertice.MensajeError(e.getMessage());
+			ventanaVertice.MensajeError(e.getMessage());
 		}
 	}
 	
@@ -97,9 +97,9 @@ public class Controlador {
 		try {
 			grafo.agregarArista(origen, destino);
 			ventanaPrincipal.actualizarGrafo(grafo);
-			ventanaCrearArista.MensajeAgregado("Arista creada con exito");
+			ventanaArista.MensajeAgregado("Arista creada con exito");
 		}catch (IllegalArgumentException e) {
-			ventanaCrearArista.MensajeError(e.getMessage());
+			ventanaArista.MensajeError(e.getMessage());
 		}
 	}
 	
@@ -107,9 +107,9 @@ public class Controlador {
 		try {
 			grafo.eliminarArista(origen, destino);
 			ventanaPrincipal.actualizarGrafo(grafo);
-			ventanaCrearArista.MensajeAgregado("Arista eliminada");
+			ventanaArista.MensajeAgregado("Arista eliminada");
 		}catch (IllegalArgumentException e) {
-			ventanaCrearArista.MensajeError(e.getMessage());
+			ventanaArista.MensajeError(e.getMessage());
 		}
 	}
 	

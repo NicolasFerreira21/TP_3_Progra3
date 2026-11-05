@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
 
-public class VentanaCrearVertice extends JFrame{
+public class VentanaVertice extends JFrame{
 
 	private JFrame frame;
 	private Controlador controlador;
@@ -31,7 +31,7 @@ public class VentanaCrearVertice extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public VentanaCrearVertice() {	
+	public VentanaVertice() {	
 		initialize();
 		
 	}
