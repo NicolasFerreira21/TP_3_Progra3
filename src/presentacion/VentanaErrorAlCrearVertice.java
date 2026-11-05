@@ -15,16 +15,10 @@ public class VentanaErrorAlCrearVertice extends JFrame{
 	private JFrame frame;
 	private Controlador controlador;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		new IniciarClases();
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public VentanaErrorAlCrearVertice() {
 		getContentPane().setLayout(null);
 		
@@ -40,9 +34,8 @@ public class VentanaErrorAlCrearVertice extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void setControlador(Controlador controlador) {

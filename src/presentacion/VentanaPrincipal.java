@@ -34,14 +34,14 @@ public class VentanaPrincipal extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 555, 455);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		
+		setBounds(100, 100, 555, 455);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JButton BotonCrearVertices = new JButton("Crear vertice");
 		BotonCrearVertices.setBounds(313, 252, 128, 30);
-		frame.getContentPane().add(BotonCrearVertices);
+		getContentPane().add(BotonCrearVertices);
 		BotonCrearVertices.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.iniciarVentanaCrearVertice();				
@@ -50,8 +50,8 @@ public class VentanaPrincipal extends JFrame{
 		
 		JButton BotonCrearArista = new JButton("Crear Arista");
 		BotonCrearArista.setBounds(313, 157, 128, 30);
-		frame.getContentPane().add(BotonCrearArista);
-		frame.getContentPane().add(BotonCrearVertices);
+		getContentPane().add(BotonCrearArista);
+		getContentPane().add(BotonCrearVertices);
 		BotonCrearArista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.iniciarVentanaCrearArista();
@@ -60,7 +60,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		JButton BotonCrearDominante = new JButton("Buscar Dominante Minimo");
 		BotonCrearDominante.setBounds(313, 83, 171, 30);
-		frame.getContentPane().add(BotonCrearDominante);
+		getContentPane().add(BotonCrearDominante);
 	}
 	
 	public void setControlador(Controlador controlador) {

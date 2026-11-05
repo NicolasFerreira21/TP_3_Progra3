@@ -39,7 +39,6 @@ public class VentanaCrearVertice extends JFrame{
 		textoVertice = new JTextField();
 		textoVertice.setHorizontalAlignment(SwingConstants.CENTER);
 		textoVertice.setBounds(200, 46, 23, 23);
-		textoVertice.setText(" ");
 		getContentPane().add(textoVertice);
 		textoVertice.setColumns(10);
 		
@@ -62,9 +61,8 @@ public class VentanaCrearVertice extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void setControlador(Controlador controlador) {
